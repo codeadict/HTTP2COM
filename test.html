@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-gb" class="no-js">
+<head>
+  <title>TESTING IGPYTHON SERVICE</title>
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1>TESTING IGPYTHON SERVICE</h1>
+<input type='text' name='value' id='value' placeholder='Enter Value to Send to COM port...'/>
+<a href='#' id='send'>Send Data</a>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#send").click(function(e) {
+      e.preventDefault();
+      $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: 'http://127.0.0.1:8090/' + $('#value').val(),
+      success:function(data){
+        // successful request; do something with the data
+        alert(data.content);
+      },
+      error:function(){
+        // failed request; give feedback to user
+        alert('Error on the request.');
+      }
+      });
+    });
+  });
+</script>
+</body>
+</html>
+
